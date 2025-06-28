@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Data Storage</h1>
+    
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+    </div>
+    
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" placeholder="Enter your age">
+    </div>
+    
+    <div class="buttons">
+        <button id="saveBtn">Save Data</button>
+        <button id="loadBtn">Load Data</button>
+    </div>
+    
+    <script>
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            
+            localStorage.setItem('userName', name);
+            localStorage.setItem('userAge', age);
+            
+            alert('Data saved successfully!');
+        });
+        
+        document.getElementById('loadBtn').addEventListener('click', function() {
+            const name = localStorage.getItem('userName');
+            const age = localStorage.getItem('userAge');
+            
+            document.getElementById('name').value = name || '';
+            document.getElementById('age').value = age || '';
+            
+            if (name || age) {
+                alert('Data loaded successfully!');
+            } else {
+                alert('No data found in storage.');
+            }
+        });
+    </script>
+</body>
+</html>
